@@ -1,68 +1,91 @@
 var express = require("express");
 var router = express.Router();
+var prisma = require("../const/prisma");
 
-/*
-  [{
-    id: string,
-    name: string,
-    description: string,
-    daysOfWeek: number[],
-    completions: number,
-    completionPercentage: number,
-    habitType: enum,
-  }]
-*/
-
-router.get("/", (req, res) => {
-  res.send("Habits list endpoint");
+router.get("/", async (req, res) => {
+  const habits = await prisma.habit.findMany();
+  res.send({ habits });
 });
 
-/*
-  {
-    id: string,
-    name: string,
-    description: string,
-    daysOfWeek: number[],
-    completions: number,
-    completionPercentage: number,
-    habitType: enum,
-  }
-*/
+router.get("/:habitId", async (req, res) => {
+  const { habitId } = req.params;
 
-router.get("/:habitId", (req, res) => {
-  res.send(`Habits detail endpoint at id: ${req.params.habitId}`);
+  const habit = await prisma.habit
+    .findUnique({
+      where: {
+        id: habitId,
+      },
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  res.send({ habit });
 });
 
-/*
-  {
-    name: string,
-    description: string,
-    daysOfWeek: number[],
-    habitType: enum,
-  }
-*/
+router.post("/", async (req, res) => {
+  const { name, description, daysOfWeek, userId } = req.body;
 
-router.post("/", (req, res) => {
-  res.send("Habit creation endpoint");
+  const newHabit = await prisma.habit
+    .create({
+      data: {
+        name,
+        description,
+        daysOfWeek: {
+          create: daysOfWeek.map((day) => ({
+            day,
+          })),
+        },
+        userId,
+      },
+    })
+    .catch((error) => {
+      console.log("Error", error);
+    });
+
+  res.send({ newHabit });
 });
 
-/*
-  {
-    name: string,
-    description: string,
-    daysOfWeek: number[],
-    habitType: enum,
-  }
-*/
+router.patch("/:habitId", async (req, res) => {
+  const { habitId } = req.params;
+  const { name, description, daysOfWeek } = req.body;
 
-router.patch("/:habitId", (req, res) => {
-  res.send(`Habits update endpoint with id: ${req.params.habitId}`);
+  const updatedHabit = await prisma.habit
+    .update({
+      where: {
+        id: habitId,
+      },
+      data: {
+        name,
+        description,
+        daysOfWeek: {
+          create: daysOfWeek.map((day) => ({
+            day,
+          })),
+        },
+      },
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  res.send({ updatedHabit });
 });
 
-// No payload for deletion
+router.delete("/:habitId", async (req, res) => {
+  const { habitId } = req.params;
 
-router.delete("/:habitId", (req, res) => {
-  res.send(`Habits delete endpoint with id: ${req.params.habitId}`);
+  await prisma.habit
+    .delete({
+      where: {
+        id: habitId,
+      },
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  res.send({ habitId });
 });
 
 module.exports = router;
