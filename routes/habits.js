@@ -8,17 +8,25 @@ router.get("/allForTesting", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  const habits = await prisma.habit.findMany();
+  const { userId } = req;
+
+  const habits = await prisma.habit.findMany({
+    where: {
+      userId,
+    },
+  });
   res.send({ habits });
 });
 
 router.get("/:habitId", async (req, res) => {
-  const { habitId } = req.params;
+  const { userId, params } = req;
+  const { habitId } = params;
 
   const habit = await prisma.habit
     .findUnique({
       where: {
         id: habitId,
+        userId,
       },
     })
     .catch((error) => {
@@ -29,7 +37,8 @@ router.get("/:habitId", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { name, description, daysOfWeek, userId } = req.body;
+  const { userId, body } = req;
+  const { name, description, daysOfWeek } = body;
 
   const newHabit = await prisma.habit
     .create({
