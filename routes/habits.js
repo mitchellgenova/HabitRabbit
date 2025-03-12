@@ -2,6 +2,11 @@ var express = require("express");
 var router = express.Router();
 var prisma = require("../const/prisma");
 
+router.get("/allForTesting", async (req, res) => {
+  const habits = await prisma.habit.findMany();
+  res.send({ habits });
+});
+
 router.get("/", async (req, res) => {
   const habits = await prisma.habit.findMany();
   res.send({ habits });

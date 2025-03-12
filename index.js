@@ -9,6 +9,7 @@ const port = 3000;
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var habitsRouter = require("./routes/habits");
+const verifyToken = require("./middleware/authMiddleware");
 
 var app = express();
 
@@ -24,7 +25,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/habits", habitsRouter);
+app.use("/habits", verifyToken, habitsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
