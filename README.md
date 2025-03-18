@@ -63,7 +63,7 @@ https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 
 
 | Name                       | Description                                                                 |
-| -------------------------------------------------------------------------------------------------------- |
+| -------------------------- | --------------------------------------------------------------------------- |
 | DATABASE_URL               | The local database url.                                                     |
 | JWT_SECRET_KEY             | Repo slug must match the GitHub repo URL slug part                          |
 
