@@ -75,11 +75,15 @@ https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 
 ## Roadmap
 
-- Create Habit from Frontend
-- View Habit List from Frontend
-- View Habit Detail from Frontend
-- Delete Habit from Frontend
-
+- Frontend
+  - Create Habit
+  - View Habit List
+  - View Habit Detail
+  - Delete Habit
+- Backend
+  - Optimize Queries
+  - Unit tests
+  - Typescript
   
 ## Support
 
