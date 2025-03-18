@@ -64,8 +64,8 @@ https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 
 | Name                       | Description                                                                 |
 | -------------------------- | --------------------------------------------------------------------------- |
-| DATABASE_URL               | The local database url.                                                     |
-| JWT_SECRET_KEY             | Repo slug must match the GitHub repo URL slug part                          |
+| DATABASE_URL               | The local database url                                                      |
+| JWT_SECRET_KEY             | The jwt secret key for authentication between the FE and BE                 |
 
 > You can generate a the jwt secret key here: https://jwtsecret.com/generate
 
