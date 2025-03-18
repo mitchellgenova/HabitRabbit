@@ -53,7 +53,6 @@ export async function login(state: SigninFormState, formData: FormData) {
     };
   }
 
-  // 2. Prepare data for insertion into database
   const { email, password } = validatedFields.data;
 
   const data = await fetch("http://localhost:3010/users/login", {
