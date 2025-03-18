@@ -1,6 +1,7 @@
-var express = require("express");
-var router = express.Router();
-var prisma = require("../const/prisma");
+import express from "express";
+import prisma from "../const/prisma.js";
+
+const router = express.Router();
 
 router.get("/allForTesting", async (req, res) => {
   const habits = await prisma.habit.findMany();
@@ -102,4 +103,4 @@ router.delete("/:habitId", async (req, res) => {
   res.send({ habitId });
 });
 
-module.exports = router;
+export default router;

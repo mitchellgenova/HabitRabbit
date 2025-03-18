@@ -1,9 +1,9 @@
-var express = require("express");
-var router = express.Router();
-var jwt = require("jsonwebtoken");
-var prisma = require("../const/prisma");
-const bcrypt = require("bcrypt");
+import express from "express";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+import prisma from "../const/prisma.js";
 
+const router = express.Router();
 const secretKey = process.env.JWT_SECRET_KEY;
 
 router.get("/", async (req, res) => {
@@ -51,4 +51,4 @@ router.post("/login", async (req, res) => {
   res.status(200).json({ token });
 });
 
-module.exports = router;
+export default router;

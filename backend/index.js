@@ -1,16 +1,15 @@
-var createError = require("http-errors");
-var express = require("express");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-const cors = require("cors");
+import createError from "http-errors";
+import express from "express";
+import cookieParser from "cookie-parser";
+import logger from "morgan";
+import cors from "cors";
+
+import usersRouter from "./routes/users.js";
+import habitsRouter from "./routes/habits.js";
+import verifyToken from "./middleware/authMiddleware.js";
 
 const port = 3010;
-
-var usersRouter = require("./routes/users");
-var habitsRouter = require("./routes/habits");
-const verifyToken = require("./middleware/authMiddleware");
-
-var app = express();
+const app = express();
 
 app.use(cors()); // Allow all origins (use a more restrictive approach in production)
 app.use(logger("dev"));
@@ -40,4 +39,4 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-module.exports = app;
+export default app;
