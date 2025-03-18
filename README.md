@@ -1,3 +1,4 @@
+<details open="open">
 <summary>Table of Contents</summary>
 
 - [About](#about)
@@ -10,6 +11,8 @@
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [Support](#support)
+
+</details>
 
 ---
 
