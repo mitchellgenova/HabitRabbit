@@ -48,7 +48,16 @@ router.post("/login", async (req, res) => {
 
   const token = jwt.sign({ userId: user.id }, secretKey, { expiresIn: "1h" });
 
-  res.status(200).json({ token });
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: false, // TODO: Set `true` in production with HTTPS
+    sameSite: "lax",
+    maxAge: 60 * 60 * 1000, // 1 hour,
+  });
+
+  const { password: unsentPassword, ...restOfUser } = user;
+
+  res.status(200).json({ ...restOfUser });
 });
 
 export default router;

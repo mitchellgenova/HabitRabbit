@@ -39,7 +39,7 @@ export async function signup(state: SignupFormState, formData: FormData) {
   redirect("/signin");
 }
 
-export async function signin(state: SigninFormState, formData: FormData) {
+export async function login(state: SigninFormState, formData: FormData) {
   // Validate form fields
   const validatedFields = SigninFormSchema.safeParse({
     email: formData.get("email"),
@@ -65,7 +65,12 @@ export async function signin(state: SigninFormState, formData: FormData) {
       email,
       password,
     }),
+    credentials: "include", // Required for cookies
   });
 
-  console.log(data);
+  if (data.ok) {
+    console.log("Login successful");
+  } else {
+    console.error("Login failed");
+  }
 }
