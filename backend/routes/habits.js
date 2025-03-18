@@ -16,6 +16,7 @@ router.get("/", async (req, res) => {
       userId,
     },
   });
+
   res.send({ habits });
 });
 

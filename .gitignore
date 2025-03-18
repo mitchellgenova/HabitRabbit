@@ -1,5 +1,6 @@
-node_modules
-bin
-.env
-prisma/migrations
-prisma/dev.dv
+# Ignore everything by default
+/*
+
+# Except for these directories
+!/fe/
+!/backend/
