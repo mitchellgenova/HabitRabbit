@@ -11,7 +11,15 @@ import verifyToken from "./middleware/authMiddleware.js";
 const port = 3010;
 const app = express();
 
-app.use(cors()); // Allow all origins (use a more restrictive approach in production)
+const whitelist = ["http://localhost:3000", "http://localhost:3001"];
+
+app.use(
+  cors({
+    origin: whitelist,
+    credentials: true,
+  })
+);
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
