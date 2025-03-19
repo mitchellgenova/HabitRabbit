@@ -49,7 +49,7 @@ router.post("/", async (req, res) => {
         name,
         description,
         daysOfWeek: {
-          create: daysOfWeek.map((day) => ({
+          create: daysOfWeek.map((day: number) => ({
             day,
           })),
         },
@@ -76,7 +76,7 @@ router.patch("/:habitId", async (req, res) => {
         name,
         description,
         daysOfWeek: {
-          create: daysOfWeek.map((day) => ({
+          create: daysOfWeek.map((day: number) => ({
             day,
           })),
         },
