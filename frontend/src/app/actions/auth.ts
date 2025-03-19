@@ -69,6 +69,7 @@ export async function login(state: SigninFormState, formData: FormData) {
 
   if (data.ok) {
     console.log("Login successful");
+    redirect("/habits");
   } else {
     console.error("Login failed");
   }

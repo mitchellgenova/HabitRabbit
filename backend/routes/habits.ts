@@ -60,7 +60,7 @@ router.post("/", async (req, res) => {
       console.log("Error", error);
     });
 
-  res.send({ newHabit });
+  res.send(newHabit);
 });
 
 router.patch("/:habitId", async (req, res) => {
@@ -86,7 +86,7 @@ router.patch("/:habitId", async (req, res) => {
       console.log(error);
     });
 
-  res.send({ updatedHabit });
+  res.send(updatedHabit);
 });
 
 router.delete("/:habitId", async (req, res) => {

@@ -8,7 +8,7 @@ const secretKey = process.env.JWT_SECRET_KEY as string;
 
 router.get("/", async (req, res) => {
   const allUsers = await prisma.user.findMany();
-  res.send({ allUsers });
+  res.send(allUsers);
 });
 
 router.post("/signup", async (req, res) => {
