@@ -5,7 +5,8 @@ const router = express.Router();
 
 router.get("/allForTesting", async (req, res) => {
   const habits = await prisma.habit.findMany();
-  res.send({ habits });
+
+  res.send(habits);
 });
 
 router.get("/", async (req, res) => {
