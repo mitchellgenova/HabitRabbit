@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, RequestHandler, Response } from "express";
 import jwt from "jsonwebtoken";
 
 const secretKey = process.env.JWT_SECRET_KEY as string;
@@ -7,12 +7,13 @@ interface DecodedToken {
   userId: string;
 }
 
-const verifyToken = (req: Request, res: Response, next: NextFunction) => {
+const verifyToken: RequestHandler = (req, res, next) => {
   const token = req.cookies.token;
   console.log(req.cookies);
 
   if (!token) {
-    return res.status(401).json({ error: "Access Denied" });
+    res.status(401).json({ error: "Access Denied" });
+    return;
   }
 
   try {
