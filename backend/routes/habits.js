@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
     },
   });
 
-  res.send({ habits });
+  res.send(habits);
 });
 
 router.get("/:habitId", async (req, res) => {
