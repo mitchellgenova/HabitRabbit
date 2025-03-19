@@ -1,5 +1,5 @@
 import createError from "http-errors";
-import express from "express";
+import express, { Express, Request, Response, NextFunction } from "express";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import cors from "cors";
@@ -9,7 +9,7 @@ import habitsRouter from "./routes/habits.js";
 import verifyToken from "./middleware/authMiddleware.js";
 
 const port = 3010;
-const app = express();
+const app: Express = express();
 
 const whitelist = ["http://localhost:3000", "http://localhost:3001"];
 
@@ -34,7 +34,7 @@ app.use(function (req, res, next) {
 });
 
 // error handler
-app.use((err, req, res, next) => {
+app.use((err, req: Request, res: Response, next: NextFunction) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
