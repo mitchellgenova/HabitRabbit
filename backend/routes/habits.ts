@@ -16,6 +16,9 @@ router.get("/", async (req, res) => {
     where: {
       userId,
     },
+    omit: {
+      userId: true,
+    },
   });
 
   res.send(habits);
@@ -30,6 +33,9 @@ router.get("/:habitId", async (req, res) => {
       where: {
         id: habitId,
         userId,
+      },
+      omit: {
+        userId: true,
       },
     })
     .catch((error) => {
