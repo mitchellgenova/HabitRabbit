@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import HabitCard from "../components/HabitCard";
+import { Habit } from "../../../../types";
 
 export default async function Habits() {
   const cookieStore = await cookies();
@@ -13,11 +14,9 @@ export default async function Habits() {
 
   const habits = await res.json();
 
-  console.log(habits);
-
   return (
     <div className="grid grid-cols-3">
-      {habits.map((habit) => (
+      {habits.map((habit: Habit) => (
         <HabitCard key={habit.id} habit={habit} />
       ))}
     </div>
