@@ -1,14 +1,20 @@
 import type { NextAuthConfig } from "next-auth";
+import { cookies } from "next/headers";
+
+const protectedRoutes = ["/habits", "/something"];
 
 export const authConfig = {
   pages: {
     signIn: "/signin",
   },
   callbacks: {
-    authorized({ auth, request: { nextUrl } }) {
-      const isLoggedIn = !!auth?.user;
-      const isOnDashboard = nextUrl.pathname.startsWith("/habits");
-      if (isOnDashboard) {
+    async authorized({ auth, request: { nextUrl } }) {
+      const cookieStore = await cookies();
+      const token = cookieStore.get("token"); // Read the "token" cookie
+
+      const isLoggedIn = !!token;
+      const isProtectedRoute = protectedRoutes.includes(nextUrl.pathname);
+      if (isProtectedRoute) {
         if (isLoggedIn) return true;
         return false; // Redirect unauthenticated users to login page
       } else if (isLoggedIn) {
