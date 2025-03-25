@@ -63,13 +63,13 @@ https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 ```
 
 
-#### Backend Environment Variables
+#### Environment Variables
 
 
 | Name                       | Description                                                                 |
 | -------------------------- | --------------------------------------------------------------------------- |
 | DATABASE_URL               | The local database url                                                      |
-| JWT_SECRET_KEY             | The jwt secret key for authentication between the FE and BE                 |
+| AUTH_SECRET                | The jwt secret key for authentication between the FE and BE                 |
 
 > You can generate a the jwt secret key here: https://jwtsecret.com/generate
 
@@ -83,7 +83,6 @@ https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 - Backend
   - Optimize Queries
   - Unit tests
-  - Typescript
   
 ## Support
 
