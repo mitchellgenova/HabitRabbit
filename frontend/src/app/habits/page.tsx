@@ -12,7 +12,7 @@ export default async function Habits() {
     },
   });
 
-  const habits = await res.json();
+  const habits = [];
 
   return (
     <div className="grid grid-cols-3">

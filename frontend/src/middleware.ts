@@ -1,12 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
+import NextAuth from "next-auth";
+import { authConfig } from "./auth.config";
 
-export function middleware(req: NextRequest) {
-  const token = req.cookies.get("token");
-  console.log("token", token);
+export default NextAuth(authConfig).auth;
 
-  if (!token && req.nextUrl.pathname.startsWith("/habits")) {
-    return NextResponse.redirect(new URL("/signin", req.url));
-  }
-
-  return NextResponse.next();
-}
+export const config = {
+  // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
+  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
+};
