@@ -8,7 +8,7 @@ export const authConfig = {
     signIn: "/signin",
   },
   callbacks: {
-    async authorized({ auth, request: { nextUrl } }) {
+    async authorized({ request: { nextUrl } }) {
       const cookieStore = await cookies();
       const token = cookieStore.get("token"); // Read the "token" cookie
 
