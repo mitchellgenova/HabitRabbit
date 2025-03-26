@@ -2,6 +2,7 @@
 
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
+import { signOut } from "next-auth/react";
 
 export async function authenticate(
   prevState: string | undefined,
@@ -18,6 +19,14 @@ export async function authenticate(
           return "Something went wrong.";
       }
     }
+    throw error;
+  }
+}
+
+export async function logout() {
+  try {
+    await signOut({ redirectTo: "/" });
+  } catch (error) {
     throw error;
   }
 }

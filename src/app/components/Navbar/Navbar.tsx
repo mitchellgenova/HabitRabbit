@@ -2,6 +2,8 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useActionState } from "react";
+import { signOut } from "@/auth";
 
 const links = [
   { name: "Habits", href: "/habits" },
@@ -10,6 +12,7 @@ const links = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [state, action] = useActionState(signOut, undefined);
 
   return (
     <nav className="flex gap-5 bg-gray-600 p-2">
@@ -27,6 +30,9 @@ export default function Navbar() {
           {link.name}
         </Link>
       ))}
+      <form action={action}>
+        <button type="submit">Sign out</button>
+      </form>
     </nav>
   );
 }

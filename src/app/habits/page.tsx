@@ -1,9 +1,7 @@
 import HabitCard from "../components/HabitCard";
 
 export default async function Habits() {
-  const cookieStore = await cookies();
-
-  const res = await fetch("http://localhost:3010/api/habits");
+  const res = await fetch("http://localhost:3000/api/habits");
 
   const habits = await res.json();
 

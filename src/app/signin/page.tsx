@@ -1,7 +1,6 @@
 "use client";
 
 import { useActionState } from "react";
-import { login } from "../actions/auth";
 import { authenticate } from "../lib/actions";
 
 export default function SigninForm() {
