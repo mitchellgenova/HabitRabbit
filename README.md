@@ -8,7 +8,7 @@
   - [Usage](#usage)
     - [Install Dependencies](#install-dependencies)
     - [Start Local Development](#start-local-development)
-    - [Backend Environment Variables](#backend-environment-variables)
+    - [Environment Variables](#environment-variables)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [Support](#support)
