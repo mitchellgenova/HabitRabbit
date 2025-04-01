@@ -2,15 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { prisma } from "@/app/lib/prisma";
 
-// GET: Fetch all habits
-// export async function GET(req, res) {
-//   const session = await auth();
-//   console.log(session);
-//   const habits = await prisma.habit.findMany();
-//   return NextResponse.json(habits);
-// }
-
-export const GET = async (req) => {
+export const GET = async () => {
   const habits = await prisma.habit.findMany();
   return NextResponse.json(habits);
 };
