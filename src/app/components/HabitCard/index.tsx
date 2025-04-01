@@ -1,8 +1,7 @@
 import { CircleCheck, CirclePercent } from "lucide-react";
-import { Habit } from "../../../../../types/index";
 
 interface HabitCardProps {
-  habit: Habit;
+  habit: Record<string, unknown>;
 }
 
 export default function HabitCard({ habit }: HabitCardProps) {

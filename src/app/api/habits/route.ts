@@ -1,18 +1,25 @@
 import { NextResponse } from "next/server";
-import prisma from "../prisma";
-import { getToken } from "next-auth/jwt";
+import { auth } from "@/auth";
+import { prisma } from "@/app/lib/prisma";
 
 // GET: Fetch all habits
-export async function GET() {
+// export async function GET(req, res) {
+//   const session = await auth();
+//   console.log(session);
+//   const habits = await prisma.habit.findMany();
+//   return NextResponse.json(habits);
+// }
+
+export const GET = async (req) => {
   const habits = await prisma.habit.findMany();
   return NextResponse.json(habits);
-}
+};
 
 export async function POST(req: Request) {
   const { name, description, daysOfWeek } = await req.json();
-  // console.log(req);
-  const token = await getToken({ req, secret: process.env.AUTH_SECRET });
-  console.log("token", token);
+  const session = await auth();
+  console.log(session);
+  // const token = await getToken({ req, secret: process.env.AUTH_SECRET });
 
   // const newHabit = await prisma.habit
   //   .create({

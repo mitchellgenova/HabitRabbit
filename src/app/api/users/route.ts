@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import prisma from "../prisma";
+import { prisma } from "@/app/lib/prisma";
 
 // GET: Fetch all users
 export async function GET() {
