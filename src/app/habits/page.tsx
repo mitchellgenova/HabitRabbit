@@ -4,7 +4,6 @@ export default async function Habits() {
   const res = await fetch("http://localhost:3000/api/habits");
 
   const habits = await res.json();
-  // const habits = [];
 
   return (
     <div className="grid grid-cols-3">
